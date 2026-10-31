@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Portage auto-update at 2am
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=false
+RandomizedDelaySec=5min
+
+[Install]
+WantedBy=timers.target

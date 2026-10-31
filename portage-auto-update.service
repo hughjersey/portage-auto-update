@@ -1,0 +1,14 @@
+[Unit]
+Description=Automated Portage @world update
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/portage-auto-update.sh
+KillMode=process
+Nice=10
+TimeoutStartSec=infinity
+
+ProtectHome=read-only
+PrivateTmp=false
