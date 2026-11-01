@@ -524,7 +524,7 @@ else
     DELETED=$(lsof -n 2>/dev/null | grep -E 'DEL|deleted')
     for service in $SAFE_SERVICES; do
         # lsof cuts names off at 9 chars
-        if echo "$DELETED" | grep -Eq "^${service:0:9}\s+[0-9]" && svc_active "$service"; then
+        if grep -Eq "^${service:0:9}\s+[0-9]" <<< "$DELETED" && svc_active "$service"; then
             echo "Restarting $service (has open deleted files)..."
             if svc_restart "$service"; then
                 echo "  $service restarted successfully"
